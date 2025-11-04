@@ -37,7 +37,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   const port = process.env.PORT || 3000;
-  await app.listen(port);
+  await app.listen(port, '0.0.0.0');
   logger.log(`Server running on http://localhost:${port}`);
   logger.log(`Swagger: http://localhost:${port}/api`);
   logger.log(`🔑 JWT expires in: ${process.env.JWT_EXPIRES_IN}s`);
