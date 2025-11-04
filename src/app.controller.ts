@@ -6,7 +6,16 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getWelcome(): object {
+    return {
+      message: '¡Bienvenido a Choppi API!',
+      endpoints: {
+        auth: '/auth',
+        stores: '/stores',
+        products: '/products',
+        cart: '/cart'
+      }
+    };
   }
-}
+  }
+
