@@ -13,7 +13,7 @@ async function bootstrap() {
   const origins = (process.env.CORS_ORIGINS || '').split(',').map(o => o.trim()).filter(Boolean);
 
   app.enableCors({
-    origin: origins.length ? origins : ['http://localhost:3001', 'http://localhost:3000'],
+    origin: origins.length ? origins : ['http://localhost:3001', 'http://localhost:3000', 'https://fe-choppi.vercel.app'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type',
