@@ -1,0 +1,2 @@
+export declare const ADMIN_KEY = "isAdmin";
+export declare function AdminOnly(): <TFunction extends Function, Y>(target: TFunction | object, propertyKey?: string | symbol, descriptor?: TypedPropertyDescriptor<Y>) => void;
