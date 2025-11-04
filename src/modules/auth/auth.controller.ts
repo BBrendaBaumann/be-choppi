@@ -11,7 +11,7 @@ export class AuthController {
 
   @Post('login')
   @ApiBody({ type: LoginDto })
-  @ApiOkResponse({ description: 'JWT token generado', schema: { example: { accessToken: 'jwt.token.aqui' } } })
+  @ApiOkResponse({ description: 'JWT token generado', schema: { example: { access_token: 'jwt.token.aqui' } } })
   async login(@Body() dto: LoginDto) {
     const valid: User = await this.authService.validateUser(dto.email, dto.password);
     if (!valid) throw new UnauthorizedException('Invalid credentials');

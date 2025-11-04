@@ -8,6 +8,7 @@ import { UsersModule } from '../users/users.module';
 import { AuthService } from './auth.service'; 
 import { AuthController } from './auth.controller'; 
 import { JwtStrategy } from './jwt.strategy'; 
+import { RolesGuard } from '@/common/guards/roles.guard';
 
 
 dotenv.config();
@@ -19,10 +20,12 @@ dotenv.config();
     TypeOrmModule.forFeature([User]),
     JwtModule.register({
       secret: process.env.JWT_SECRET || 'supersecret',
-      signOptions: { expiresIn: parseInt(process.env.JWT_EXPIRES_IN || '3600', 10)}
+      signOptions: { 
+        expiresIn: (process.env.JWT_EXPIRES_IN || '24h') as any, 
+      }
     })
   ],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, RolesGuard], 
   controllers: [AuthController],
   exports: [AuthService]
 })

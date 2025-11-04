@@ -8,15 +8,23 @@ dotenv.config();
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
-  const app = await NestFactory.create(AppModule, { cors: false });
+  const app = await NestFactory.create(AppModule);
 
   const origins = (process.env.CORS_ORIGINS || '').split(',').map(o => o.trim()).filter(Boolean);
+
   app.enableCors({
-    origin: origins.length ? origins : true,
-    credentials: true
+    origin: origins.length ? origins : ['http://localhost:3001', 'http://localhost:3000'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type',
+  'Authorization',
+  'Accept',
+  'Cache-Control',
+  'X-Requested-With',
+  'Origin',],
   });
 
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true,}));
 
   const config = new DocumentBuilder()
     .setTitle('Choppi API')
@@ -32,6 +40,7 @@ async function bootstrap() {
   await app.listen(port);
   logger.log(`Server running on http://localhost:${port}`);
   logger.log(`Swagger: http://localhost:${port}/api`);
+  logger.log(`🔑 JWT expires in: ${process.env.JWT_EXPIRES_IN}s`);
 }
 
 bootstrap();

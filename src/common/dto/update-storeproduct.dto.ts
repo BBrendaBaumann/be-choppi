@@ -1,4 +1,16 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateStoreProductDto } from './create-storeproduct.dto';
+import { IsOptional, IsNumber, Min } from 'class-validator';
+import { Transform } from 'class-transformer';
 
-export class UpdateStoreProductDto extends PartialType(CreateStoreProductDto) {}
+export class UpdateStoreProductDto {
+  @IsOptional()
+  @Transform(({ value }) => parseFloat(value))
+  @IsNumber()
+  @Min(0)
+  price?: number;
+
+  @IsOptional()
+  @Transform(({ value }) => parseInt(value))
+  @IsNumber()
+  @Min(0)
+  stock?: number;
+}

@@ -1,4 +1,3 @@
-//TODO ejecuta con npm run seed
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import dataSource from '@/data-source';
@@ -20,7 +19,6 @@ async function run() {
 
   console.log('Seeding...');
 
-  //TODO Demo user (password will be hashed by entity hook)
   const demo = userRepo.create({ email: 'demo@choppi.test', password: 'Password123!', isAdmin: true });
   await userRepo.save(demo);
 

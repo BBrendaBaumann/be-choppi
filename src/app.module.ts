@@ -24,8 +24,7 @@ const typeOrmConfig: DataSourceOptions = {
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_NAME || 'choppi',
   entities: [User, Store, Product, StoreProduct],
-  synchronize: false, //!TypeORM con synchronize: true intenta reescribir o alterar la tabla users para que coincida con tu entity.
-  migrationsRun: true,
+  synchronize: false,
   migrations: ['dist/migrations/*.js'],
   logging: false
 };

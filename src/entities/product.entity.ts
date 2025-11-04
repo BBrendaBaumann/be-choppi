@@ -22,6 +22,10 @@ export class Product {
   @Column({ nullable: true })
   description!: string;
 
+   @ApiProperty()
+  @Column({ default: false })
+  deleted!: boolean;
+
   @ApiProperty()
   @OneToMany(() => StoreProduct, sp => sp.product)
   storeProducts!: StoreProduct[];

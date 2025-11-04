@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsInt, IsNumber, Min } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsInt, IsNumber, IsOptional, Min } from 'class-validator';
 
 export class CreateStoreProductDto {
   @ApiProperty({ example: 1 })
@@ -8,7 +9,9 @@ export class CreateStoreProductDto {
 
   @ApiProperty({ example: 100.5 })
   @IsNumber()
-  price!: number;
+  @IsOptional()
+  @Transform(({ value }) => parseFloat(value))
+  price?: number;
 
   @ApiProperty({ example: 10 })
   @IsNumber()

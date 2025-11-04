@@ -35,7 +35,8 @@ export class StoreProductsService {
     const qb = this.repo
       .createQueryBuilder('sp')
       .leftJoinAndSelect('sp.product', 'product')
-      .where('sp.storeId = :storeId', { storeId });
+      .where('sp.storeId = :storeId', { storeId })
+      .andWhere('sp.deleted = :deleted', { deleted: false });
 
     if (query?.inStock) {
       qb.andWhere('sp.stock > 0');

@@ -4,12 +4,12 @@ import { CreateStoreProductDto } from '@/common/dto/create-storeproduct.dto';
 import { UpdateStoreProductDto } from '@/common/dto/update-storeproduct.dto'; 
 import { StoreProductsService } from './store-products.service';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard'; 
+import { AdminOnly } from '../auth/admin.decorator';
 
 @ApiTags('store-products')
 @Controller('stores/:storeId/products')
 export class StoreProductsController {
   constructor(private svc: StoreProductsService) {}
-
   
   @Get()
   @ApiQuery({ name: 'page', required: false })
@@ -24,26 +24,22 @@ export class StoreProductsController {
     return this.svc.findAll(storeId, query);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
+  @AdminOnly()
   @Post()
   @ApiBody({ type: CreateStoreProductDto })
   async create(@Param('storeId', ParseIntPipe) storeId: number, @Body() dto: CreateStoreProductDto) {
     return this.svc.create(storeId, dto);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
   @Put(':spId')
   @ApiBody({ type: UpdateStoreProductDto })
   async update(@Param('storeId', ParseIntPipe) storeId: number, @Param('spId', ParseIntPipe) spId: number, @Body() dto: UpdateStoreProductDto) {
     return this.svc.update(storeId, spId, dto);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
+  @AdminOnly()
   @Delete(':spId')
-  async remove(@Param('storeId') storeId: number, @Param('spId') spId: number) {
+  async remove(@Param('storeId', ParseIntPipe) storeId: number, @Param('spId', ParseIntPipe) spId: number) {
     return this.svc.remove(storeId, spId);
   }
 }
