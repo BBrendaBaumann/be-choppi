@@ -1,26 +1,29 @@
-Choppi App
-URLs públicas
+# 🍔 Choppi App
+## 🌐 URLs públicas
 
-Frontend: https://fe-choppi.vercel.app/
+**Frontend:** https://fe-choppi.vercel.app/
 
-Backend (API/Swagger): https://be-choppi.onrender.com/api (Swagger disponible en https://be-choppi.onrender.com/api)
+**Backend (API/Swagger):** https://be-choppi.onrender.com/api (Swagger disponible en https://be-choppi.onrender.com/api)
 
-Demo user
+## 👤 Demo user
 
 Puedes probar la aplicación con el siguiente usuario demo:
 
-Email: demo@choppi.test
+**Email:** demo@choppi.test
 
-Password: Password123!
+**Password:** Password123!
 
-Repositorios
+##  📂 Repositorios
 
-Backend: https://github.com/BBrendaBaumann/be-choppi
+**Backend:** https://github.com/BBrendaBaumann/be-choppi
 
-Frontend: https://github.com/BBrendaBaumann/fe-choppi
+**Frontend:** https://github.com/BBrendaBaumann/fe-choppi
 
-Setup local
-Backend
+## 🛠️ Setup local
+
+## Backend
+
+*Pasos para leavntar el backend*
 
 Clonar el repositorio:
 
@@ -92,4 +95,4 @@ Variables de entorno configuradas en Render incluyen  JWT_SECRET, PORT, DB_HOST,
 
 - Las migraciones y seeds deben ejecutarse solo si quieres replicar la base de datos localmente.
 
-Muchísimas gracias por la oportunidad!
+***Muchísimas gracias por la oportunidad!***
